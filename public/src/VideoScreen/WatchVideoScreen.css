@@ -1,0 +1,199 @@
+/* src/WatchVideo.css */
+.big-container {
+  display: flex;
+  flex-direction: row;
+  
+  
+}
+.watch-video-container {
+  max-width: 60%; /* Adjust width as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  margin: 20px;
+  padding-left: 20px; /* Add padding to move content from the very edge */
+}
+
+.video-player {
+  width: 95%; /* Increase the width to make the video bigger */
+  margin-bottom: 20px;
+}
+
+.video-player video {
+  width: 100%; /* Make the video fill the entire video player container */
+}
+
+.video-info {
+  width: 95%; /* Increase the width of the video info section */
+  text-align: left; /* Align text to the left */
+  font-size: 22px; /* Increase the font size for better readability */
+  margin-left: auto; /* Move the video info section slightly to the right */
+}
+
+
+.comments-section {
+  margin-top: 20px;
+  width: 95%; /* Set width to 95% */
+  border: 2px solid #ccc; /* Add border */
+  border-radius: 10px; /* Add border radius */
+  padding: 20px; /* Add padding */
+  background-color: #f9f9f9; /* Light gray background color */
+  margin-left: -20px; /* Move comments container further to the left */
+}
+
+.comments-count {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comments-section ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+}
+
+.comments-section li {
+  border: 1px solid #ccc; /* Add border around each comment */
+  border-radius: 10px; /* Round the corners */
+  padding: 10px; /* Add padding */
+  margin-bottom: 10px; /* Add margin between comments */
+  background-color: #ffffff; /* White background color */
+}
+
+.comments-section input {
+  width: 80%; /* Set width to full width */
+  padding: 20px; /* Increase padding */
+  margin-bottom: 30px; /* Increase margin bottom for separation */
+  font-size: 20px; /* Increase font size for better readability */
+  border-radius: 20px;
+  
+}
+#dark .comments-section input {
+  background-color: #3e163e00; /* Set dark background color */
+}
+
+.comments-section button {
+  padding: 15px 30px; /* Adjust padding */
+  font-size: 18px; /* Adjust font size */
+  border: 2px solid #ccc; /* Add border */
+  border-radius: 30px; /* Make buttons more circular */
+  background-color: #f9f9f9; /* Set background color */
+  margin-right: 40px; /* Add spacing between buttons */
+}
+#dark .comments-section button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
+}
+
+/* Update the styles for like, dislike, share, and download buttons */
+.video-info button {
+  padding: 15px 30px; /* Adjust padding */
+  font-size: 18px; /* Adjust font size */
+  border: 2px solid #ccc; /* Add border */
+  border-radius: 30px; /* Make buttons more circular */
+  background-color: #f9f9f9; /* Set background color */
+  margin-right: 20px; /* Add spacing between buttons */
+  margin-left: 0px; /* Move buttons a little to the left */
+}
+#dark .video-info button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
+}
+
+/* Update the styles for like button */
+.video-info button.like {
+  border-color: #4caf50; /* Green color for like button border */
+  color: #4caf50; /* Green color for like button text */
+}
+
+/* Update the styles for dislike button */
+.video-info button.dislike {
+  border-color: #f44336; /* Red color for dislike button border */
+  color: #f44336; /* Red color for dislike button text */
+}
+
+/* Update the styles for share button */
+.video-info button.share {
+  border-color: #2196f3; /* Blue color for share button border */
+  color: #2196f3; /* Blue color for share button text */
+}
+
+/* Update the styles for download button */
+.video-info button.download {
+  border-color: #ff9800; /* Orange color for download button border */
+  color: #ff9800; /* Orange color for download button text */
+}
+
+.video-info button.Subscribers {
+  border-color: #ff9800; /* Orange color for download button border */
+  color: #ff9800; /* Orange color for download button text */
+}
+
+
+/* Add styles for comments */
+.comments-section {
+  margin-top: 20px;
+  width: 100%;
+  margin-left: -50px; /* Move comments container further to the left */
+  border: 2px solid black; /* Add black border */
+  background-color: #f0f0f0;
+  
+}
+#dark .comments-section {
+  background-color: #3e163e48; /* Set dark background color */
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+}
+.comment .deleteCommButton {
+  background-color: #f9f9f9;
+  float: right; /* Add float property to move the button to the right */
+  padding: 5px;
+}
+
+
+
+.comment img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+.button-container {
+  background-color: #f0f0f0; /* Set background color */
+  padding: 10px 20px 10px 10px; /* Adjust padding: top right bottom left */
+  border-radius: 10px; /* Add border radius */
+  border: 2px solid black; /* Add black border */
+  margin-left: -53px; /* Move the container a little to the left */
+  width: calc(100% - 0px); /* Adjust width if necessary */
+}
+#dark .button-container {
+  background-color: #3e163e48; /* Set dark background color */
+}
+
+
+.video-list-container {
+  flex:auto;
+  padding: 20px;
+  margin: 1px;
+  overflow-y: scroll;
+  max-height: 1500px;
+  /* Add left margin to move the container to the right */
+   /* Set a fixed height for the video list */
+  width: 20%; /* Adjust width as needed */
+ 
+  
+}
+.buttuonPressed {
+  background-color: #61525270 !important;  /* Set background color */
+ 
+}
+#dark .buttuonPressed{
+  background-color: #3e163e84 !important; /* Set dark background color */
+}

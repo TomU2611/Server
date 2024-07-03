@@ -1,0 +1,40 @@
+/* src/SideBar/SideBar.css */
+
+.sidebar {
+    position: fixed;
+    top: 80px; /* Add 'px' unit */
+    left: 0;
+    width: 200px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+  #dark .sidebar {
+    
+    background-color: #3e163e48;
+  }
+  
+  .list-group-item {
+    font-size: 1.2rem;
+    border: 0;
+    background-color: transparent;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    word-wrap: break-word;
+    border-bottom: 1px solid #ddd; /* Add a bottom border */
+  }
+  
+  .list-group-item:last-child {
+    border-bottom: none; /* Remove bottom border for the last item */
+  }
+  
+  .list-group-item:hover {
+    background-color: lightgray;
+  }
+
+  
+  
+  

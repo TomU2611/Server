@@ -1,0 +1,144 @@
+/* RegisterPage.css */
+
+.register-container {
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 800vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+    position: relative;
+}
+#dark .register-container{
+    background-color: #430b4311;
+}
+.youtube-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 100px;
+    width: 180px;
+    background-image: url('logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.register-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+#dark .register-form{
+    background-color: #3e163e49;
+}
+
+.register-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.register-form .form-group {
+    margin-bottom: 15px;
+}
+
+.register-form .form-group span {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+#dark .register-form .form-group span{
+    background-color: #8f468f00;
+    color: black;
+}
+
+.register-form .form-group input {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+#dark .register-form .form-group input{
+    background-color: #13061300;
+    color: black;
+}
+
+.register-form .form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.register-form .form-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.register-form .form-buttons button:hover {
+    background-color: #218838;
+}
+
+.profile-picture {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.profile-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+
+.profile-picture input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    margin: 0;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+#dark .custom-file-upload{
+    background-color: #13061300;
+    color: black;
+}
+
+.custom-file-upload:hover {
+    background-color: #f1f1f1;
+}
+
+.invalid-input-message {
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.valid-input-message {
+    color: green;
+    padding: 10px;
+    font-size: 20px;
+}

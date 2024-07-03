@@ -1,0 +1,42 @@
+.VideoItem {
+    text-align: left;
+    direction: ltr;
+    border-radius: 3%;
+
+}
+#dark .VideoItem {
+    
+    background-color: #512c5159;
+    color: black;
+}
+
+#dark .VideoItem:hover{
+    background-color: #bb8d8d;
+}
+.VideoItem img {
+    width: 300px ; 
+    height: 160px;
+    border-radius: 10px;
+}
+.VideoItem div {
+    font-size: 27px;
+    color: black;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1rem;
+    
+    
+    
+}
+ 
+.VideoItem p {
+    font-size: 17px;
+    color: black;
+    display: block;
+   
+    
+}
+#dark .VideoItem p{
+    
+    color: black;
+}

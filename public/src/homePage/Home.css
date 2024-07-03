@@ -1,0 +1,91 @@
+
+/* Reset the default margin and align items to the left */
+.row {
+  margin-left: -30px;
+  margin-right: -11px;
+  justify-content: flex-start;
+}
+
+/* Remove left and right padding for certain columns */
+.col-sm-9-fluid,
+.col-sm-3-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Home page styles */
+.Home {
+  padding-top: 100px; /* Adjust this based on the height of your topbar */
+}
+
+.Home.dark-mode {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+/* Sidebar styles */
+.SideBar {
+  padding-top: 100px; /* Adjust this based on the height of your topbar */
+}
+
+.SideBar.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* VideoList styles */
+.VideoList {
+  clear: both;
+  padding-top: 150px; /* Adjust this based on the height of your topbar */
+  padding-left: 250px;
+}
+
+.VideoList.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* WatchVideoScreen styles */
+.WatchVideoScreen {
+  padding-top: 100px; /* Adjust this based on the height of your topbar */
+}
+
+.WatchVideoScreen.dark-mode {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+/* Adjust the size and position of the WatchVideoScreen */
+.watch-video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  margin: 20px;
+  padding-left: 20px; /* Add padding to move content from the very edge */
+  width: 80%; /* Adjust width as needed */
+  margin-left: 0; /* Adjust margin-left to move WatchVideoScreen to the left */
+}
+
+/* Adjust the size of the VideoList */
+.video-list-container {
+  width: 100%; /* Adjust width as needed */
+  margin-left: -300px; /* Adjust margin-left to move VideoList further to the left */
+  margin-top: 0px; /* Adjust margin-top to move VideoList further to the top */
+}
+
+
+/* Adjust column size for larger screens */
+@media (min-width: 992px) {
+  .col-lg-8 {
+    width: 80%; /* Adjust width as needed */
+    margin-left: 0; /* Adjust margin-left to move WatchVideoScreen to the left */
+  }
+  .col-lg-4 {
+    width: 20%; /* Adjust width as needed */
+    margin-left: 0; /* Adjust margin-left to move VideoList further to the left */
+  }
+}
+
+#dark{
+  background-color: #3e163e48;
+}

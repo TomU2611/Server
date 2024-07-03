@@ -1,0 +1,121 @@
+/* src/topBar/TopBar.css */
+
+.topbar {
+  display: flex;
+  justify-content: flex-start; /* Start from the left */
+  align-items: center;
+  padding: 10px 70px;
+  background-color: #ffffff; /* Background color is white */
+  color: #000000; /* Text color is black */
+  border-radius: 15px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for a better look */
+  position: fixed; /* Make the TopBar fixed */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+#dark .topbar{
+ 
+  background-color: #775377;
+}
+
+.topbar-right {
+   
+  margin-left: auto; /* Pushes the content to the right */
+  height: 30px;
+  float: left;
+  position: relative;
+  right: -1350px; /* Adjust as needed for spacing */
+}
+
+.buttonSign {
+  background-color: #ffffff; /* Blue color */
+  border-color: #ffffff; /* Border color */
+  color: #007bff; /* Text color */
+  border-radius: 20px 20px 20px 20px; /* Rounded corners for right side */
+}
+
+.buttonSign:hover {
+  background-color: lightgrey; /* Darker shade of blue on hover */
+}
+
+.logo {
+  height: 70px;
+  float: left;
+  position: relative;
+  left: -515px; /* Adjust as needed for spacing */
+  margin-top: -13px; /* Adjust this value to move the logo higher */
+}
+
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Pushes the center content to the right */
+  transform: translateX(-80%); /* Moves the content to the center of the page */
+}
+
+.search-input {
+  width: 500px; /* Adjust the width as needed */
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; /* Rounded corners for left side */
+}
+#dark .search-input{
+  background-color: #bab0ba48;
+  
+  
+ 
+  
+}
+#dark .search-input::placeholder{
+  color: #000000;
+}
+.search-button {
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 0 20px 20px 0; /* Rounded corners for right side */
+  cursor: pointer;
+}
+#dark .search-button{
+  background-color: #bab0ba48;
+  
+}
+
+.topbar-right {
+  
+  
+  float: left;
+  position: relative;
+  left: 1120px; /* Adjust as needed for spacing */
+  height: -2px;
+}
+
+
+
+
+
+.profile-picture1  {
+  
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex !important;
+  flex-direction: row !important;
+ 
+}
+
+.userImg {
+  width: 60px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+  margin-bottom: 10px !important;
+  
+  
+
+}

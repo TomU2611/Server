@@ -1,0 +1,16 @@
+.AddedVideoList {
+    display: flex;
+    flex-direction: column;
+}
+
+.AddedVideoListHeader {
+    display: flex;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.headerItem {
+    text-align: left;
+    margin-left: 200px;
+}

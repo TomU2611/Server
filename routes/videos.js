@@ -14,5 +14,10 @@ router.route('/:id')
     .patch(videosController.updateVideo) // Update a specific video
     .delete(videosController.deleteVideo); // Delete a specific video
 
+// Route for getting all videos that start with a specific prefix
+router.route('/prefix/:prefix')
+    .get(videosController.getVideosByPrefix); // Get all videos that start with a specific prefix
+
+    
 module.exports = router;
 

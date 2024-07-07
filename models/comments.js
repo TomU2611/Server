@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = new Schema({
-   
+
+const CommentSchema = new Schema({
     username: {
-        type: String,
-        required: true
-    },
-    password: {
         type: String,
         required: true
     },
@@ -14,11 +10,17 @@ const User = new Schema({
         type: String,
         required: true
     },
-    profilePicture: {
+    photo: {
+        type: Object,
+        required: true
+    },
+    videoId: {
         type: String,
         required: true
-    }
-    
-   
-});
-module.exports = mongoose.model('User', User);
+    },
+    text:{
+        type:String,
+        required: true
+    },
+});  
+module.exports = mongoose.model('comments', CommentSchema);

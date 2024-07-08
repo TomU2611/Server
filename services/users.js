@@ -29,7 +29,7 @@ const getUser = async (username, password) => {
 
 const getUserByUsername = async (username) => {
     try {
-        return await User.findOne({ username}).exec();
+        return await User.findOne({ username}).select('-password').exec();
     } catch (error) {
         console.log(error);
         return null;

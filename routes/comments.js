@@ -8,7 +8,8 @@ router.route('/videos/:id')
     .post(commentController.createComment) // Create a new comment for a video
     .delete(commentController.deleteComments); // Delete all comments
     
-router.route('/:id/videos/:pid/')
+router.route('/:id/videos/:pid')
+    .patch(commentController.updateComment) // Update comment
     .delete(commentController.deleteComment); // Delete comment
 module.exports = router;
 

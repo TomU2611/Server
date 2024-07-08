@@ -1,11 +1,14 @@
 const Video = require('../models/videos');
+const userService = require('./users');
 
-const createVideo = async (title, author, path, authorDisplayName, photoPath) => {
+const createVideo = async (title, author, path,  photo) => {
+    const user = await userService.getUserByUsername(author);
+    const authorDisplayName = user.displayName;
     const video = new Video({
          title: title,
          author: author, 
          authorDisplayName: authorDisplayName,
-         photo: photoPath,
+         photo: photo,
          path: path
         }
     );
@@ -16,16 +19,17 @@ const getVideos = async () => {
     const videos =  await Video.find({}); 
     return getTopAndRandomVideos(videos);
 };
-const updateVideo = async (id, title, views, likes, likedBy, dislikes,dislikedBy) => {
-    const video = await getVideoById(id);
-    if (!video) return null;
-    video.title = title;
-    video.views = views;
-    video.likes = likes;
-    video.likedBy = likedBy;
-    video.dislikes = dislikes;
-    video.dislikedBy = dislikedBy;
-    await video.save();
+const updateVideo = async (id, title, views, likes, likedBy, dislikes, dislikedBy) => {
+    const update = {
+        title: title,
+        views: views,
+        likes: likes,
+        likedBy: likedBy,
+        dislikes: dislikes,
+        dislikedBy: dislikedBy
+    };
+    const options = { new: true };
+    const video = await Video.findOneAndUpdate({ _id: id }, update, options);
     return video;
 };
 

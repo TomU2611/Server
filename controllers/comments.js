@@ -20,6 +20,9 @@ const deleteComment = async (req, res) => {
 const deleteComments = async (req, res) => {
     res.json(await commentService.deleteComments(req.params.id));
 }
+const updateComment = async (req, res) => {
+    res.json(await commentService.updateComment(req.params.id, req.params.pid, req.body.text));
+}
 
 
-module.exports = { getComments, createComment, deleteComment, deleteComments };
+module.exports = { getComments, updateComment, createComment, deleteComment, deleteComments };

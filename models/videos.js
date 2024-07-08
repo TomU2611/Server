@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Video = new Schema({
     index: {
         type: Number,
-        required: true
+        
     },
     title: {
         type: String,

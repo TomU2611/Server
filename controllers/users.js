@@ -77,19 +77,16 @@ const getUserByIdWithPassword = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.params.id;
-    const username = req.body.username;
-    const password = req.body.password;
-    const displayName = req.body.displayName;
-    const photo = req.body.photo;
     const token = req.headers.authorization;
+    const displayName = req.body.displayName;
     const decoded = tokendecode(token);
     if (decoded.id !== id) {
       res.status(403).send("Invalid token");
       return;
     }
-    user = await userService.updateUser(id,username, password, displayName, photo);
+    user = await userService.updateUser(id, displayName);
     if (user !== null) {
-        res.status(200).send('User updated successfully');
+        res.status(200).json(user);
     }else{
         res.status(404).send('User not found / Username already exists');
     }

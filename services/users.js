@@ -67,5 +67,15 @@ const deleteUser = async (username) => {
         return false;
     }
 }
+const updateUser = async (id, displayName) => {
+    try {
+        const user = await User.findOneAndUpdate({ _id: id }, { displayName: displayName }, { new: true });
+        return user;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}
 
-module.exports = { createUser, getUser, getUserByUsername, getUserById, checkUserExists, deleteUser};
+module.exports = {updateUser, createUser, getUser, getUserByUsername, getUserById, checkUserExists, deleteUser};

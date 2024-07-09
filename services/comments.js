@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const getComments = async (videoId) => {
     const comments = await Comment.find({ videoId: videoId }).exec();
     if (!comments) return null;
-    return comments ;
+    return comments;
 }
 const createComment = async (videoId, username, text) => {
     const user = await userService.getUserByUsername(username);
@@ -19,11 +19,11 @@ const createComment = async (videoId, username, text) => {
         text: text
     });
     return await comment.save();
-} 
-const deleteComment = async ( commentId, videoId) => {
+}
+const deleteComment = async (commentId, videoId) => {
     const result = await Comment.findByIdAndDelete(commentId);
     if (!result) return null;
-    
+
     return await getComments(videoId);
 }
 const deleteComments = async (videoId) => {
@@ -39,12 +39,33 @@ const updateComment = async (commentId, videoId, text) => {
 
 
 }
-    
-const deleteUserComments = async (username) => {
-    const comments = await Comment.find({ username: username });
-    for (let comment of comments) {
-        await comment.remove();
+const updateCommentDisplayName = async (username, displayName) => {
+    try {
+        const comments = await Comment.find({ username: username });
+        for (let comment of comments) {
+            comment.displayName = displayName;
+            await comment.save();
+        }
+        return true;
+    }
+    catch (error) {
+        console.error(error.stack);
+        return false;
     }
 }
 
-module.exports = { getComments, updateComment, createComment, deleteComment, deleteComments, deleteUserComments };
+const deleteUserComments = async (username) => {
+
+    try {
+        const comments = await Comment.find({ username: username });
+        for (let comment of comments) {
+            await comment.remove();
+        }
+        return true;
+    } catch (error) {
+        console.error(error.stack);
+        return false;
+    }
+}
+
+module.exports = { updateCommentDisplayName, getComments, updateComment, createComment, deleteComment, deleteComments, deleteUserComments };

@@ -10,11 +10,11 @@ const createUser = async (username, password, displayName, profilePicture) => {
         displayName: displayName, 
         profilePicture: profilePicture 
     });
-    console.log(newUser);
+    
     try{
         return await newUser.save();
     }catch(error){
-        console.log(error);
+        console.error(error.stack);
     }
     
 };
@@ -31,7 +31,7 @@ const getUserByUsername = async (username) => {
     try {
         return await User.findOne({ username}).select('-password').exec();
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return null;
     }
 };
@@ -40,7 +40,7 @@ const getUserById = async (id) => {
     try {
         return await User.findById(id).select('-password').exec();
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return null;
     }
 };
@@ -49,7 +49,7 @@ const checkUserExists = async (username) => {
         const user = await User.findOne({ username: username }).exec();
         return user !== null;
     } catch (error) {
-        console.log(error);
+        console.error(error.stack);
         return false;
     }
 };
@@ -70,10 +70,12 @@ const deleteUser = async (username) => {
 const updateUser = async (id, displayName) => {
     try {
         const user = await User.findOneAndUpdate({ _id: id }, { displayName: displayName }, { new: true });
+        await updateVideoDisplayName(user.username, displayName);
+        await updateCommentDisplayName(user.username, displayName);
         return user;
     }
     catch (error) {
-        console.log(error);
+        console.error(error.stack);
         return null;
     }
 }

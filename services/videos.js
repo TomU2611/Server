@@ -1,22 +1,22 @@
 const Video = require('../models/videos');
 const userService = require('./users');
 
-const createVideo = async (title, author, path,  photo) => {
+const createVideo = async (title, author, path, photo) => {
     const user = await userService.getUserByUsername(author);
     const authorDisplayName = user.displayName;
     const video = new Video({
-         title: title,
-         author: author, 
-         authorDisplayName: authorDisplayName,
-         photo: photo,
-         path: path
-        }
+        title: title,
+        author: author,
+        authorDisplayName: authorDisplayName,
+        photo: photo,
+        path: path
+    }
     );
     return await video.save();
 };
 const getVideoById = async (id) => { return await Video.findById(id); };
-const getVideos = async () => { 
-    const videos =  await Video.find({}); 
+const getVideos = async () => {
+    const videos = await Video.find({});
     return getTopAndRandomVideos(videos);
 };
 const updateVideo = async (id, title, views, likes, likedBy, dislikes, dislikedBy) => {
@@ -32,6 +32,37 @@ const updateVideo = async (id, title, views, likes, likedBy, dislikes, dislikedB
     const video = await Video.findOneAndUpdate({ _id: id }, update, options);
     return video;
 };
+const updateVideoDisplayName = async (username, displayName) => {
+    try {
+        const videos = await Video.find({ author: username });
+        for (let video of videos) {
+            video.authorDisplayName = displayName;
+            await video.save();
+        }
+        return true;
+    } catch (error) {
+        console.error(error.stack);
+        return false;
+    }
+}
+const remFromVideoLikesDislikes = async (username) => {
+    try {
+        const likedVideos = await Video.find({ likedBy: username });
+        for (let video of likedVideos) {
+            video.likedBy = video.likedBy.filter(user => user !== username);
+            await video.save();
+        }
+        const dislikedVideos = await Video.find({ dislikedBy: username });
+        for (let video of dislikedVideos) {
+            video.dislikedBy = video.dislikedBy.filter(user => user !== username);
+            await video.save();
+        }
+        return true;
+    } catch (error) {
+        console.error(error.stack);
+        return false;
+    }
+}
 
 const deleteVideo = async (id) => {
     const result = await Video.findByIdAndDelete(id);
@@ -76,4 +107,4 @@ const getTopAndRandomVideos = (videosArray) => {
 };
 
 
-module.exports = { createVideo, getVideosByAuthor ,getVideoById, getVideos, updateVideo, deleteVideo, getVideosByPrefix, deleteUsersVideos }
+module.exports = { remFromVideoLikesDislikes, updateVideoDisplayName, createVideo, getVideosByAuthor, getVideoById, getVideos, updateVideo, deleteVideo, getVideosByPrefix, deleteUsersVideos }

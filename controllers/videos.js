@@ -32,7 +32,7 @@ const getVideo = async (req, res) => {
 
 // Update a video by ID
 const updateVideo = async (req, res) => {
-    const video = await videoService.updateVideo(req.params.id, req.body.title, req.body.views, req.body.likes, req.body.likedBy, req.body.dislikes, req.body.dislikedBy);
+    const video = await videoService.updateVideo(req.params.id,  req.body.views, req.body.likes, req.body.likedBy, req.body.dislikes, req.body.dislikedBy);
     if (!video) {
         return res.status(404).json({ errors: ['Video not found'] });
     }

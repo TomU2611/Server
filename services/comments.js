@@ -67,5 +67,11 @@ const deleteUserComments = async (username) => {
         return false;
     }
 }
+const deleteVideoComments = async (videoId) => {
+    const comments = await Comment.find({ videoId: videoId });
+    for (let comment of comments) {
+        await comment.remove();
+    }
+}
 
-module.exports = { updateCommentDisplayName, getComments, updateComment, createComment, deleteComment, deleteComments, deleteUserComments };
+module.exports = {deleteVideoComments, updateCommentDisplayName, getComments, updateComment, createComment, deleteComment, deleteComments, deleteUserComments };

@@ -2,7 +2,7 @@ const Video = require('../models/videos');
 const userService = require('./users');
 
 const createVideo = async (title, author, path, photo) => {
-    const user = await userService.getUserByUsername(author);
+    try{const user = await userService.getUserByUsername(author);
     const authorDisplayName = user.displayName;
     const video = new Video({
         title: title,
@@ -13,20 +13,30 @@ const createVideo = async (title, author, path, photo) => {
     }
     );
     return await video.save();
+    }catch(error){
+        console.error(error.stack);
+    }
 };
 const getVideoById = async (id) => { return await Video.findById(id); };
 const getVideos = async () => {
     const videos = await Video.find({});
     return getTopAndRandomVideos(videos);
 };
-const updateVideo = async (id, title, views, likes, likedBy, dislikes, dislikedBy) => {
+const updateVideo = async (id, views, likes, likedBy, dislikes, dislikedBy) => {
     const update = {
-        title: title,
         views: views,
         likes: likes,
         likedBy: likedBy,
         dislikes: dislikes,
         dislikedBy: dislikedBy
+    };
+    const options = { new: true };
+    const video = await Video.findOneAndUpdate({ _id: id }, update, options);
+    return video;
+};
+const updateVideoTitle = async (id, title) => {
+    const update = {
+        title: title
     };
     const options = { new: true };
     const video = await Video.findOneAndUpdate({ _id: id }, update, options);
@@ -107,4 +117,4 @@ const getTopAndRandomVideos = (videosArray) => {
 };
 
 
-module.exports = { remFromVideoLikesDislikes, updateVideoDisplayName, createVideo, getVideosByAuthor, getVideoById, getVideos, updateVideo, deleteVideo, getVideosByPrefix, deleteUsersVideos }
+module.exports = { updateVideoTitle,remFromVideoLikesDislikes, updateVideoDisplayName, createVideo, getVideosByAuthor, getVideoById, getVideos, updateVideo, deleteVideo, getVideosByPrefix, deleteUsersVideos }

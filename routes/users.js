@@ -58,9 +58,14 @@ router.route('/:id/videos')
     .get(userController.getUserVideos) // Get all videos of a user
     .post(upload.single('video'), userController.createUserVideo); // Create a new video for a user
 
+/*
+    * getUserVideo: pid of video (params)
+    * updateUserVideo: id of user (params), pid of video (params), title
+    * deleteUserVideo: id of user (params), pid of video (params)
+*/
 router.route('/:id/videos/:pid')
     .get(userController.getUserVideo) // Get a specific video of a user
-    .patch(userController.updateUserVideo)// Update a specific video of a user
+    .patch(userController.updateUserVideo)// Update a specific video title of a user
     .delete(userController.deleteUserVideo); // Delete a specific video of a user
 
 module.exports = router;

@@ -78,8 +78,9 @@ const getUserByIdWithPassword = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const id = req.params.id;
-  const token = req.headers.authorization;
+
   const displayName = req.body.displayName;
+  const token = req.headers.authorization;
   const decoded = tokendecode(token);
   if (decoded.id !== id) {
     res.status(403).send("Invalid token");
@@ -121,12 +122,19 @@ const deleteUser = async (req, res) => {
 }
 const getUserVideo = async (req, res) => {
   const pid = req.params.pid;
-  const video = await videoService.getVideoById(pid);
-  if (!video) {
-    res.status(404).send('Video not found');
-    return;
+  try {
+    const video = await videoService.getVideoById(pid);
+    if (!video) {
+      res.status(404).send('Video not found');
+      return;
+    }
+    res.status(200).json(video);
+  } catch (error) {
+
+    console.log(error);
+    res.status(404).send('error getting user video');
   }
-  res.status(200).json(video);
+
 }
 
 const getUserVideos = async (req, res) => {
@@ -146,12 +154,14 @@ const getUserVideos = async (req, res) => {
 
 }
 const createUserVideo = async (req, res) => {
-  console.log(req.body);
+  const token = req.headers.authorization;
+  const decoded = tokendecode(token);
+  if (decoded.id !== id) {
+    res.status(403).send("Invalid token");
+    return;
+  }
   const { title, author, photo } = req.body;
   const path = req.file ? req.file.path : null;
-
-  console.log(req.file);
-  console.log(path);
   if (!path) {
     return res.status(400).send('No video uploaded');
   }
@@ -164,6 +174,7 @@ const createUserVideo = async (req, res) => {
     }
     res.status(200).json(video);
   } catch (error) {
+    console.error(error.stack);
     res.status(500).send('Server error');
   }
 };
@@ -188,18 +199,23 @@ const updateUserVideo = async (req, res) => {
   const pid = req.params.pid;
   const id = req.params.id;
   const title = req.body.title;
-  const video = await videoService.updateVideo(pid, title);
-  const token = req.headers.authorization;
-  const decoded = tokendecode(token);
-  if (decoded.id !== id) {
-    res.status(403).send("Invalid token");
-    return;
+  try {
+    const video = await videoService.updateVideoTitle(pid, title);
+    const token = req.headers.authorization;
+    const decoded = tokendecode(token);
+    if (decoded.id !== id) {
+      res.status(403).send("Invalid token");
+      return;
+    }
+    if (!video) {
+      res.status(404).send('Video not found');
+      return;
+    }
+    res.status(200).json(video);
+  } catch (error) {
+    console.log(error);
+    res.status(404).send('error updating user video');
   }
-  if (!video) {
-    res.status(404).send('Video not found');
-    return;
-  }
-  res.status(200).json(video);
 }
 const deleteUserVideo = async (req, res) => {
   const pid = req.params.pid;
@@ -210,14 +226,20 @@ const deleteUserVideo = async (req, res) => {
     res.status(403).send("Invalid token");
     return;
   }
-  const video = await videoService.deleteVideo(pid);
+  try {
+    const result = await videoService.deleteVideo(pid);
 
-  if (!video) {
-    res.status(404).send('Video not found');
-    return;
+    if (!result) {
+      res.status(404).send('Video not found');
+      return;
+    }
+    await deleteVideoComments(pid);
+    const videos = await videoService.getVideosByAuthor(id);
+    res.status(200).json(videos);
+  } catch (error) {
+    console.log(error);
+    res.status(404).send('error deleting user video');
   }
-  const videos = await videoService.getVideosByAuthor(id);
-  res.status(200).json(video);
 }
 
 

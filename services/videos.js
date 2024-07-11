@@ -22,12 +22,10 @@ const getVideos = async () => {
     const videos = await Video.find({});
     return getTopAndRandomVideos(videos);
 };
-const updateVideo = async (id, views, likes, likedBy, dislikes, dislikedBy) => {
+const updateVideo = async (id, views, likedBy, dislikedBy) => {
     const update = {
         views: views,
-        likes: likes,
         likedBy: likedBy,
-        dislikes: dislikes,
         dislikedBy: dislikedBy
     };
     const options = { new: true };

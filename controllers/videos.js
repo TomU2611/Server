@@ -22,9 +22,18 @@ const getVideo = async (req, res) => {
     res.status(200).json(video);
 };
 
+// Update a video by ID
+const updateVideo = async (req, res) => {
+    const video = await videoService.updateVideo(req.params.id,  req.body.views, req.body.likedBy,  req.body.dislikedBy);
+    if (!video) {
+        return res.status(404).json({ errors: ['Video not found'] });
+    }
+    res.json(video); //not sure if this is correct
+};
+
 // Get all videos that start with a specific prefix
 const getVideosByPrefix = async (req, res) => {
     res.status(200).json(await videoService.getVideosByPrefix(req.params.prefix));
 }
 
-module.exports = { getVideos, getVideo, getVideosByPrefix };
+module.exports = {updateVideo, getVideos, getVideo, getVideosByPrefix };

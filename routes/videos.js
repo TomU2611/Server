@@ -10,6 +10,7 @@ router.route('/')
 // Route for getting, updating, and deleting a specific video by its ID
 router.route('/:id')
     .get(videosController.getVideo) // Get a specific video
+    .patch(videosController.updateVideo) // Update a specific video
 
 // Route for getting all videos that start with a specific prefix
 router.route('/prefix/:prefix')

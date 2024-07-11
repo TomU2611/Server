@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Video = new Schema({
-    index: {
-        type: Number,
-        
-    },
+   
     title: {
         type: String,
         required: true
@@ -33,26 +30,14 @@ const Video = new Schema({
         type: String,
         required: true
     },
-    likes: {
-        type: Number,
-        default: 0
-    },
+    
     likedBy: [{
         type: String,
     }],
-    dislikes: {
-        type: Number,
-        default: 0
-    },
+    
     dislikedBy: [{
         type: String,
-    }],
-    commentsNum: {
-        type: Number,
-        default: 0
-    },
-    Comments: [{
-        type: String,
     }]
+    
 });
 module.exports = mongoose.model('Video', Video);

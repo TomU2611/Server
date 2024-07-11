@@ -23,7 +23,7 @@ mongoose.connect(process.env.CONNECTION_STRING,
     }
 );
 
-
+app.use(express.static('public'));
 
 app.use(cors());
 app.use('/api/videos', videos);

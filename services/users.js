@@ -2,6 +2,7 @@ const User = require('../models/users');
 
 
 
+
 const createUser = async (username, password, displayName, profilePicture) => {
     
     const newUser = new User({ 
@@ -63,15 +64,14 @@ const deleteUser = async (username) => {
         await user.remove();
         return true;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return false;
     }
 }
 const updateUser = async (id, displayName) => {
     try {
         const user = await User.findOneAndUpdate({ _id: id }, { displayName: displayName }, { new: true });
-        await updateVideoDisplayName(user.username, displayName);
-        await updateCommentDisplayName(user.username, displayName);
+        
         return user;
     }
     catch (error) {

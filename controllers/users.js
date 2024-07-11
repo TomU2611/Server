@@ -87,7 +87,10 @@ const updateUser = async (req, res) => {
     return;
   }
   user = await userService.updateUser(id, displayName);
+  
   if (user !== null) {
+    await videoService.updateVideoDisplayName(user.username, displayName);
+    await commentService.updateCommentDisplayName(user.username, displayName);
     res.status(200).json(user);
   } else {
     res.status(404).send('User not found / Username already exists');
@@ -95,7 +98,8 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-  const id = req.params.id;
+
+  try{const id = req.params.id;
   const username = req.body.username;
   const token = req.headers.authorization;
   const decoded = tokendecode(token);
@@ -118,6 +122,10 @@ const deleteUser = async (req, res) => {
     res.status(200).send('User deleted successfully');
   } else {
     res.status(404).send('User not found');
+  }
+  }catch(error){
+    console.error(error.stack);
+    res.status(404).send('error deleting user');
   }
 }
 const getUserVideo = async (req, res) => {
@@ -154,6 +162,7 @@ const getUserVideos = async (req, res) => {
 
 }
 const createUserVideo = async (req, res) => {
+  const id = req.params.id;
   const token = req.headers.authorization;
   const decoded = tokendecode(token);
   if (decoded.id !== id) {
@@ -161,10 +170,11 @@ const createUserVideo = async (req, res) => {
     return;
   }
   const { title, author, photo } = req.body;
-  const path = req.file ? req.file.path : null;
+  let path = req.file ? req.file.path : null;
   if (!path) {
     return res.status(400).send('No video uploaded');
   }
+  path = '\\videos' + path.split('videos')[1];
 
   try {
     const video = await videoService.createVideo(title, author, path, photo);
@@ -179,22 +189,7 @@ const createUserVideo = async (req, res) => {
   }
 };
 
-/*
-const createUserVideo = async (req, res) => {
-    const title = req.body.title;
-    const author = req.body.author;
-    const authorDisplayName = req.body.authorDisplayName;
-    const photo = req.body.photo;
-    const path = req.body.path;
-    const video = await videoService.createVideo(title, author, authorDisplayName, photo, path);
-    if (!video) {
-        res.status(404).send('Video not created');
-        return;
-    }
 
-    res.status(200).json(video);
-}
-*/
 const updateUserVideo = async (req, res) => {
   const pid = req.params.pid;
   const id = req.params.id;
@@ -233,7 +228,7 @@ const deleteUserVideo = async (req, res) => {
       res.status(404).send('Video not found');
       return;
     }
-    await deleteVideoComments(pid);
+    await commentService.deleteVideoComments(pid);
     const videos = await videoService.getVideosByAuthor(id);
     res.status(200).json(videos);
   } catch (error) {

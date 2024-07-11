@@ -16,11 +16,15 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
+    limits: {
+        fieldSize: 7* 1024 * 1024 // 1 MB (adjust the size as needed)
+    },
     storage: storage,
     fileFilter: function (req, file, cb) {
         const filetypes = /mp4|avi|mkv/; // Add more video formats if needed
         const mimetype = filetypes.test(file.mimetype);
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        console.log(extname);
         if (mimetype && extname) {
             return cb(null, true);
         } else {
@@ -56,7 +60,7 @@ router.route('/:id/username')
 */
 router.route('/:id/videos')
     .get(userController.getUserVideos) // Get all videos of a user
-    .post(upload.single('video'), userController.createUserVideo); // Create a new video for a user
+    .post(upload.single('video'), userController.createUserVideo); // Create a new video for a user returns the new video
 
 /*
     * getUserVideo: pid of video (params)
@@ -65,8 +69,8 @@ router.route('/:id/videos')
 */
 router.route('/:id/videos/:pid')
     .get(userController.getUserVideo) // Get a specific video of a user
-    .patch(userController.updateUserVideo)// Update a specific video title of a user
-    .delete(userController.deleteUserVideo); // Delete a specific video of a user
+    .patch(userController.updateUserVideo)// Update a specific video title of a user returns the updated video
+    .delete(userController.deleteUserVideo); // Delete a specific video of a user returns all of his videos
 
 module.exports = router;
 

@@ -16,7 +16,7 @@ https://marksheinberg01.atlassian.net/jira/software/projects/SCRUM/boards/1/back
 ## How to Run The Server? 
 
 first navigate to the "Server" folder
-create a file named ".env.local" under the config folder and enter:
+create a file named ".env.local" under the config folder and fill it with:
 
 ```
 CONNECTION_STRING="mongodb://localhost:27017"
@@ -32,10 +32,7 @@ open MongoDBCompass and connect to "mongodb://localhost:27017"
 under the "test" DB imoprt the json files from the 'dataForServer' folder 
 import users.json to users and videos.json to videos.
 
-Now you will also need to set up MongoDBCompass to work with this server, 
-Open MongoDBCompass and start by clicking connect when you have this url in the box: 
-
-now yo can open your browser on http://localhost:12345/ and enjoy our site!
+now you can open your browser on http://localhost:12345/ and enjoy our site!
 
 ## A few notes
 
